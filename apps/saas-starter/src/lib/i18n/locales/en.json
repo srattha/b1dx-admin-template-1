@@ -110,6 +110,10 @@
     "title": "Orders Overview",
     "subtitle": "Efficiently manage all incoming customer orders across channels."
   },
+  "orders": {
+    "overview": "Orders Overview",
+    "description": "Efficiently manage all incoming customer orders across channels."
+  },
   "change_status": {
     "title": "Change Status",
     "subtitle": "Update status for selected processing orders in one action.",
