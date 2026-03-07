@@ -38,7 +38,7 @@ import type { ProcessingOrder } from '../types/models';
 import { OrderAdvancedSearchFields } from './OrderAdvancedSearchFields';
 import { OrderSearchSection } from './OrderSearchSection';
 import { OrderSortFields } from './OrderSortFields';
-
+import Link from 'next/link';
 // TODO: Replace MOCK_ICON_TABS with real tabs when features are implemented
 const MOCK_ICON_TABS: IconTabItem[] = [
   { value: 'overview', label: 'Overview', icon: LayoutGrid },
@@ -180,9 +180,12 @@ export function OrderProcessingWrapper() {
       accessorKey: 'orderId',
       header: t('common.order_id'),
       cell: ({ getValue }) => (
-        <span className="text-sm font-bold text-primary cursor-pointer hover:underline underline-offset-4 decoration-primary/30">
+        <Link
+          href={`/orders/${getValue<string>()}`}
+          className="text-sm font-bold text-primary cursor-pointer hover:underline underline-offset-4 decoration-primary/30"
+        >
           {getValue<string>()}
-        </span>
+        </Link>
       ),
     },
     {
@@ -321,11 +324,11 @@ export function OrderProcessingWrapper() {
         tabValue={mockTabValue}
         onTabChange={(val) => {
           // TODO: Implement real tab navigation when all tabs are ready.
-          if (val === 'filter-products') { 
+          if (val === 'filter-products') {
             router.push('/processing-orders/filter-products');
           } else if (val === 'change-status') {
             router.push('/processing-orders/change-status');
-          }  else if (val === 'reserveStock') {
+          } else if (val === 'reserveStock') {
             router.push('/processing-orders/reserve-stock');
           }
           else {

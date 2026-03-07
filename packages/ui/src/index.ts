@@ -28,6 +28,7 @@ export {
   ExportExcelButton,
   AdvanceButton,
   SortButton,
+  PrintButton,
 } from './components/app/ActionButtons';
 export { AppDialogConfirm } from './components/app/AppDialogConfirm';
 export { AppEmptyState } from './components/app/AppEmptyState';
