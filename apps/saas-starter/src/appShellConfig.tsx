@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import i18n from "@/lib/i18n/i18n";
 import { LogoutButton } from "@/features/auth/components/LogoutButton";
@@ -215,11 +216,10 @@ const LanguageDropdown = ({
           key={lang.id}
           type="button"
           onClick={() => onSelect(lang.id)}
-          className={`mx-1.5 w-[calc(100%-12px)] rounded-lg px-4 py-2.5 text-sm transition-all ${
-            selectedId === lang.id
+          className={`mx-1.5 w-[calc(100%-12px)] rounded-lg px-4 py-2.5 text-sm transition-all ${selectedId === lang.id
               ? "bg-accent text-accent-foreground font-semibold"
               : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-          }`}
+            }`}
         >
           {lang.label}
         </button>
@@ -254,9 +254,8 @@ const ShortcutsDropdown = () => {
         {shortcuts.map((item, index) => (
           <div
             key={item.title}
-            className={`flex cursor-pointer flex-col items-center p-6 text-center transition-all hover:bg-accent/50 group ${
-              index % 2 === 0 ? "border-r border-border/50" : ""
-            } ${index < shortcuts.length - 2 ? "border-b border-border/50" : ""}`}
+            className={`flex cursor-pointer flex-col items-center p-6 text-center transition-all hover:bg-accent/50 group ${index % 2 === 0 ? "border-r border-border/50" : ""
+              } ${index < shortcuts.length - 2 ? "border-b border-border/50" : ""}`}
           >
             <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-card group-hover:text-primary group-hover:shadow-md">
               <item.icon size={22} />
@@ -353,8 +352,10 @@ const NotificationsDropdown = () => {
 
 const ProfileDropdown = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   const menuItems = [
-    { label: t("profile.my_profile"), icon: User },
+    { label: t("profile.my_profile"), icon: User, href: "/profile-setting" },
     { label: t("profile.settings"), icon: Settings },
     { label: t("profile.pricing"), icon: DollarSign },
     { label: t("profile.faq"), icon: HelpCircle },
@@ -384,6 +385,9 @@ const ProfileDropdown = () => {
           <button
             key={item.label}
             type="button"
+            onClick={() => {
+              if ((item as any).href) router.push((item as any).href);
+            }}
             className="group flex w-full items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
           >
             <item.icon size={18} className="text-muted-foreground transition-colors group-hover:text-primary" />
@@ -478,11 +482,10 @@ const TopBarActions = () => {
             <DropdownMenuItem
               key={theme.id}
               onClick={() => setActiveTheme(theme.id)}
-              className={`flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium ${
-                activeTheme === theme.id
+              className={`flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium ${activeTheme === theme.id
                   ? "bg-accent text-accent-foreground font-semibold"
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-              }`}
+                }`}
             >
               <theme.icon
                 size={18}

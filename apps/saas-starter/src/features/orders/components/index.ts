@@ -10,3 +10,6 @@ export { ReserveStockFailedTab } from './ReserveStockFailedTab';
 
 export { FilterProductsTableSection, type FilterProductsTableSectionProps } from './FilterProductsTableSection';
 export { FilterProductGroup, type FilterProductGroupProps } from './FilterProductGroup';
+export { OrderDetail, type OrderDetailProps } from './OrderDetail';
+export { OrderAllWrapper as OrderAll } from './OrderAllWrapper';
+

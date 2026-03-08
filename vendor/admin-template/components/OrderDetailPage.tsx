@@ -3,12 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Layout } from './Layout';
-import { 
-  Package, 
-  User, 
-  MapPin, 
-  Truck, 
-  CreditCard, 
+import {
+  Package,
+  User,
+  MapPin,
+  Truck,
+  CreditCard,
   Calendar,
   ExternalLink,
   Clock,
@@ -20,6 +20,7 @@ import {
   Check,
   Hourglass
 } from 'lucide-react';
+import CustomerInfo from './CustomerInfo';
 
 // Mock data lookup (in a real app, this would be an API call)
 const MOCK_ORDERS: Record<string, any> = {
@@ -77,9 +78,9 @@ export const OrderDetailPage: React.FC = () => {
       {/* Page Header Area */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <Button 
-            variant="outline" 
-            size="icon" 
+          <Button
+            variant="outline"
+            size="icon"
             className="rounded-xl hover:bg-accent shadow-sm"
             onClick={() => navigate(-1)}
           >
@@ -95,7 +96,7 @@ export const OrderDetailPage: React.FC = () => {
             <p className="text-sm text-muted-foreground font-medium mt-1">Placed on {order.date}</p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-3">
           <Button variant="outline" className="rounded-xl font-bold gap-2 h-11 px-5 shadow-sm">
             <Printer size={18} />
@@ -119,11 +120,13 @@ export const OrderDetailPage: React.FC = () => {
                 <User size={14} />
                 Customer Information
               </div>
-              <div className="bg-card rounded-2xl p-6 space-y-3 border border-border shadow-sm">
-                <p className="text-lg font-bold text-foreground">John Doe</p>
-                <p className="text-sm text-muted-foreground font-medium">+66 81 234 5678</p>
-                <p className="text-sm text-muted-foreground font-medium">john.doe@example.com</p>
-              </div>
+              <CustomerInfo content={
+                <>
+                  <p className="text-lg font-bold text-foreground">John Doe</p>
+                  <p className="text-sm text-muted-foreground font-medium">+66 81 234 5678</p>
+                  <p className="text-sm text-muted-foreground font-medium">john.doe@example.com</p>
+                </>
+              } />
             </div>
 
             <div className="space-y-4">
@@ -131,15 +134,17 @@ export const OrderDetailPage: React.FC = () => {
                 <MapPin size={14} />
                 Shipping Address
               </div>
-              <div className="bg-card rounded-2xl p-6 space-y-2 border border-border shadow-sm">
-                <p className="text-sm font-bold text-foreground leading-relaxed">
-                  123 Sukhumvit Road, Khlong Toei, Bangkok 10110, Thailand
-                </p>
-                <div className="flex items-center gap-2 pt-2">
-                  <Badge variant="outline" className="text-[10px] font-black uppercase tracking-tighter">Home</Badge>
-                  <span className="text-[11px] text-muted-foreground font-bold">Default Address</span>
-                </div>
-              </div>
+              <CustomerInfo content={
+                <>
+                  <p className="text-sm font-bold text-foreground leading-relaxed">
+                    123 Sukhumvit Road, Khlong Toei, Bangkok 10110, Thailand
+                  </p>
+                  <div className="flex items-center gap-2 pt-2">
+                    <Badge variant="outline" className="text-[10px] font-black uppercase tracking-tighter">Home</Badge>
+                    <span className="text-[11px] text-muted-foreground font-bold">Default Address</span>
+                  </div>
+                </>
+              } />
             </div>
           </div>
 
@@ -238,7 +243,7 @@ export const OrderDetailPage: React.FC = () => {
                   <div className={`w-8 h-8 rounded-full border-4 z-10 shrink-0 flex items-center justify-center relative overflow-hidden ${step.active ? 'bg-card border-emerald-500/20' : 'bg-card border-muted/30 text-muted-foreground'}`}>
                     {/* Faint background overlay to maintain the look while being opaque to the line */}
                     <div className={`absolute inset-0 ${step.active ? 'bg-emerald-500/10' : 'bg-muted/10'}`} />
-                    
+
                     <div className="relative z-20 flex items-center justify-center w-full h-full">
                       {step.active ? (
                         <div className="w-5 h-5 rounded-full border-2 border-emerald-500 flex items-center justify-center">
