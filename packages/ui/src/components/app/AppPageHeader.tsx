@@ -6,7 +6,7 @@ import { Button } from '../ui/Button';
 import { cn } from '../../lib/cn';
 
 export interface AppPageHeaderProps {
-  title: string;
+  title: React.ReactNode;
   description?: string;
   actions?: React.ReactNode;
   showBackButton?: boolean;

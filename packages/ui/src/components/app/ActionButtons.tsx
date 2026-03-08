@@ -1,5 +1,5 @@
 import type React from 'react';
-import { RotateCcw, Search, ArrowUpDown, Download, Filter } from 'lucide-react';
+import { RotateCcw, Search, ArrowUpDown, Download, Filter, Printer } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/cn';
 
@@ -74,6 +74,20 @@ export function ExportExcelButton({ children = 'Export Excel', className, ...pro
   );
 }
 
+export function PrintButton({ children = 'Print', className, ...props }: ButtonProps) {
+  return (
+    <Button
+      variant="outline"
+      type="button"
+      className={cn('rounded-xl border px-5 py-2 shadow-sm flex items-center gap-2', className)}
+      {...props}
+    >
+      <Printer size={18} />
+      {children}
+    </Button>
+  );
+}
+
 export function AdvanceButton({ children = 'Advanced', count, className, ...props }: BadgeButtonProps) {
   return (
     <Button
@@ -110,4 +124,5 @@ export function SortButton({ children = 'Sort', count, className, ...props }: Ba
       )}
     </Button>
   );
+
 }
